@@ -1,4 +1,6 @@
-# AI Mock Data Generator
+# AI Data Generata
+
+This app allows users to generate JSON data based on input prompt using OpenAI's GPT-3 language model and display the generated output in a syntax-highlighted code block, with the ability to add custom data keys.
 
 ## Getting Started
 
