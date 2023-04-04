@@ -20,10 +20,8 @@ export async function createAnswer(prompt) {
         - use this interfaces:
 
         interface Data {
-          id: string;
-          name: string;
           ${prompt.dataKeys.map((key) => {
-            return `${key.name}: ${key.type}`;
+            return `${key.value}: ${key.type}`;
           })}
         }
 

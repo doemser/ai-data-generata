@@ -1,12 +1,22 @@
-import { useState } from "react";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
+import DataForm from "@/components/DataForm";
+import DataConfigForm from "@/components/DataConfigForm";
+import InterfaceChips from "@/components/InterfaceChips";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
-import SyntaxHighlighter from "react-syntax-highlighter";
 
 export default function Home() {
   const [answer, setAnswer] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [dataKeys, setDataKeys] = useState([]);
+  const [dataKeys, setDataKeys] = useState([
+    { id: "asdSa", value: "id", type: "string" },
+    { id: "oIhYa", value: "name", type: "string" },
+  ]);
 
   async function fetcher(data) {
     try {
@@ -29,76 +39,85 @@ export default function Home() {
     }
   }
 
+  function handleDataTypeSubmit(type) {
+    setDataKeys([...dataKeys, { id: nanoid(6), ...type }]);
+  }
+
+  function handleDataTypeDelete(id) {
+    setDataKeys(dataKeys.filter((key) => key.id !== id));
+  }
+
+  // Quick Fix from here: https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/509
+  const [style, setStyle] = useState({});
+  useEffect(() => {
+    import("react-syntax-highlighter/dist/esm/styles/prism/material-dark").then(
+      (mod) => setStyle(mod.default)
+    );
+  });
+
   return (
     <>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          const formData = new FormData(event.target);
-          const data = Object.fromEntries(formData);
-          fetcher(data);
-        }}
-      >
-        <label htmlFor="persona">Data:</label>
-        <input type="text" id="persona" name="persona" defaultValue="Dogs" />
-
-        <button>submit</button>
-      </form>
-      <hr />
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          setDataKeys([
-            ...dataKeys,
-            {
-              name: inputValue,
-              type: event.target.elements.dataTypes.value,
-              id: nanoid(6),
-            },
-          ]);
-          setInputValue("");
-        }}
-      >
-        <label>
-          <input
-            // This is called a controlled input.
-            value={inputValue}
-            onChange={(event) => {
-              setInputValue(event.target.value);
-            }}
+      <Grid container spacing={1} mb={4}>
+        <Grid item xs={12}>
+          <DataForm
+            fetcher={fetcher}
+            interfaceChips={
+              <InterfaceChips
+                dataKeys={dataKeys}
+                onDataTypeDelete={handleDataTypeDelete}
+              />
+            }
+            config={<DataConfigForm onDataTypeSubmit={handleDataTypeSubmit} />}
           />
-        </label>
-        <select id="dataTypes">
-          <option value="string">String</option>
-          <option value="number">Number</option>
-          <option value="boolean">Boolean</option>
-          <option value="undefined">Undefined</option>
-          <option value="null">Null</option>
-          <option value="symbol">Symbol</option>
-        </select>
-        <button type="submit">add</button>
-      </form>
-      <hr />
-
-      <ul>
-        {dataKeys.map((todo) => {
-          return (
-            <li key={todo.id}>
-              <span>
-                {todo.name} - {todo.type}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-
-      {loading ? (
-        <p>loading..</p>
-      ) : (
-        <SyntaxHighlighter language="javascript">
-          {answer?.answer.content}
-        </SyntaxHighlighter>
-      )}
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            type="button"
+            variant="outlined"
+            onClick={() => {
+              // navigator.clipboard.writeText() is an async function we have to wait for
+              navigator.clipboard.writeText(answer?.answer.content).then(
+                () => {
+                  alert(`copied JSON to the clipboard`);
+                },
+                (error) => {
+                  console.error(error);
+                  alert(`ERROR - Okay that went wrong`);
+                }
+              );
+            }}
+          >
+            copy JSON {"{..}"}
+          </Button>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {loading ? (
+            <Stack pt={4}>
+              <CircularProgress />
+            </Stack>
+          ) : (
+            <Stack sx={{ minWidth: { xs: "400px", sm: "600px", md: "900px" } }}>
+              <SyntaxHighlighter language="javascript" style={style}>
+                {answer ? answer?.answer.content : "{}"}
+              </SyntaxHighlighter>
+            </Stack>
+          )}
+        </Grid>
+      </Grid>
     </>
   );
 }
