@@ -1,5 +1,6 @@
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
@@ -8,7 +9,13 @@ import AccordionTemplate from "@/components/Accordion";
 export default function DataForm({ fetcher, interfaceChips, config }) {
   return (
     <Stack sx={{ p: 2 }}>
-      <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
+      <Paper
+        elevation={3}
+        sx={{ p: 4, mt: 4, maxWidth: { sm: "600px" }, borderRadius: "25px" }}
+      >
+        <Typography variant="overline" component="h1" textAlign="right">
+          AI Data Generata
+        </Typography>
         <Stack
           component="form"
           direction="row"

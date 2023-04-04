@@ -58,7 +58,14 @@ export default function Home() {
   return (
     <>
       <Grid container spacing={1} mb={4}>
-        <Grid item xs={12}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <DataForm
             fetcher={fetcher}
             interfaceChips={
@@ -113,7 +120,12 @@ export default function Home() {
             </Stack>
           ) : (
             <Stack sx={{ minWidth: { xs: "400px", sm: "600px", md: "900px" } }}>
-              <SyntaxHighlighter language="javascript" style={style}>
+              <SyntaxHighlighter
+                showLineNumbers
+                language="javascript"
+                style={style}
+                customStyle={{ borderRadius: "25px" }}
+              >
                 {answer ? answer?.answer.content : "{}"}
               </SyntaxHighlighter>
             </Stack>
