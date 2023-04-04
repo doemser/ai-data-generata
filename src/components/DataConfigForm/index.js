@@ -10,7 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 
 export default function DataConfigForm({ onDataTypeSubmit }) {
-  const [dataType, setDataType] = useState({ value: "color", type: "string" });
+  const [dataType, setDataType] = useState({ value: "", type: "string" });
 
   const handleValueChange = (event) => {
     setDataType({ ...dataType, value: event.target.value });

@@ -70,6 +70,7 @@ export default function Home() {
             config={<DataConfigForm onDataTypeSubmit={handleDataTypeSubmit} />}
           />
         </Grid>
+
         <Grid
           item
           xs={12}
@@ -97,6 +98,7 @@ export default function Home() {
             copy JSON {"{..}"}
           </Button>
         </Grid>
+
         <Grid
           item
           xs={12}
