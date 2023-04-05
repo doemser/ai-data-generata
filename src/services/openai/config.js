@@ -16,6 +16,7 @@ export async function createAnswer(prompt) {
         content: `
         Create data for ${prompt.persona}.
         Desired Behaviour:
+        - create ${prompt.amount} data Data objects
         - exclusively answer in a valid json format
         - use this interfaces:
 

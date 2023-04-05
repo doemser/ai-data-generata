@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
 export default function Home() {
+  const [amount, setAmount] = useState(6);
   const [answer, setAnswer] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataKeys, setDataKeys] = useState([
@@ -24,7 +25,7 @@ export default function Home() {
       const response = await fetch("/api/gpt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, dataKeys }),
+        body: JSON.stringify({ ...data, dataKeys, amount }),
       });
       if (response.ok) {
         const result = await response.json();
@@ -45,6 +46,10 @@ export default function Home() {
 
   function handleDataTypeDelete(id) {
     setDataKeys(dataKeys.filter((key) => key.id !== id));
+  }
+
+  function handleDataAmount(newAmount) {
+    setAmount(newAmount);
   }
 
   // Quick Fix from here: https://github.com/react-syntax-highlighter/react-syntax-highlighter/issues/509
@@ -74,7 +79,13 @@ export default function Home() {
                 onDataTypeDelete={handleDataTypeDelete}
               />
             }
-            config={<DataConfigForm onDataTypeSubmit={handleDataTypeSubmit} />}
+            config={
+              <DataConfigForm
+                dataAmount={amount}
+                onDataTypeSubmit={handleDataTypeSubmit}
+                onDataAmount={handleDataAmount}
+              />
+            }
           />
         </Grid>
 

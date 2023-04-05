@@ -2,14 +2,20 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import Select from "@mui/material/Select";
+import Slider from "@mui/material/Slider";
 import MenuItem from "@mui/material/MenuItem";
 
 import FormControl from "@mui/material/FormControl";
 
 import { useState } from "react";
 
-export default function DataConfigForm({ onDataTypeSubmit }) {
+export default function DataConfigForm({
+  onDataTypeSubmit,
+  dataAmount,
+  onDataAmount,
+}) {
   const [dataType, setDataType] = useState({ value: "", type: "string" });
 
   const handleValueChange = (event) => {
@@ -31,9 +37,24 @@ export default function DataConfigForm({ onDataTypeSubmit }) {
           onDataTypeSubmit(dataType);
         }}
       >
+        <Stack spacing={2} m={2} pb={2} alignItems="center">
+          <Typography>Data Objects: {dataAmount} </Typography>
+          <Slider
+            marks
+            step={1}
+            max={10}
+            aria-label="amountSlider"
+            valueLabelDisplay="auto"
+            value={dataAmount}
+            onChange={(event) => {
+              onDataAmount(event.target.value);
+            }}
+          />
+        </Stack>
         <Stack direction="row" spacing={2} alignItems="center">
           <FormControl sx={{ minWidth: 120 }}>
             <TextField
+              required
               id="dataValue"
               label="Add type of data:"
               name="dataValue"
