@@ -28,6 +28,20 @@ export default function DataConfigForm({
 
   return (
     <Stack sx={{ p: 2 }}>
+      <Stack spacing={2} m={2} pb={2} alignItems="center">
+        <Typography>Data Objects: {dataAmount} </Typography>
+        <Slider
+          marks
+          step={1}
+          max={20}
+          aria-label="amountSlider"
+          valueLabelDisplay="auto"
+          value={dataAmount}
+          onChange={(event) => {
+            onDataAmount(event.target.value);
+          }}
+        />
+      </Stack>
       <Paper
         component="form"
         elevation={3}
@@ -37,20 +51,6 @@ export default function DataConfigForm({
           onDataTypeSubmit(dataType);
         }}
       >
-        <Stack spacing={2} m={2} pb={2} alignItems="center">
-          <Typography>Data Objects: {dataAmount} </Typography>
-          <Slider
-            marks
-            step={1}
-            max={20}
-            aria-label="amountSlider"
-            valueLabelDisplay="auto"
-            value={dataAmount}
-            onChange={(event) => {
-              onDataAmount(event.target.value);
-            }}
-          />
-        </Stack>
         <Stack direction="row" spacing={2} alignItems="center">
           <FormControl sx={{ minWidth: 120 }}>
             <TextField
