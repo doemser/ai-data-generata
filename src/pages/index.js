@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
 export default function Home() {
-  const [amount, setAmount] = useState(6);
+  const [amount, setAmount] = useState(3);
   const [answer, setAnswer] = useState(null);
   const [loading, setLoading] = useState(false);
   const [dataKeys, setDataKeys] = useState([
