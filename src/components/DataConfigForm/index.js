@@ -42,7 +42,7 @@ export default function DataConfigForm({
           <Slider
             marks
             step={1}
-            max={10}
+            max={20}
             aria-label="amountSlider"
             valueLabelDisplay="auto"
             value={dataAmount}
@@ -72,9 +72,6 @@ export default function DataConfigForm({
             <MenuItem value="string">String</MenuItem>
             <MenuItem value="number">Number</MenuItem>
             <MenuItem value="boolean">Boolean</MenuItem>
-            <MenuItem value="undefined">Undefined</MenuItem>
-            <MenuItem value="null">Null</MenuItem>
-            <MenuItem value="symbol">Symbol</MenuItem>
           </Select>
 
           <Button variant="contained" type="submit">

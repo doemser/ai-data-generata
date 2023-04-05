@@ -17,6 +17,7 @@ export default function Home() {
   const [dataKeys, setDataKeys] = useState([
     { id: "asdSa", value: "id", type: "string" },
     { id: "oIhYa", value: "name", type: "string" },
+    { id: "tYaIh", value: "funny", type: "boolean" },
   ]);
 
   async function fetcher(data) {

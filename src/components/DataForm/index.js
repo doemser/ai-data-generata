@@ -34,7 +34,7 @@ export default function DataForm({ fetcher, interfaceChips, config }) {
               label="Data of:"
               name="persona"
               variant="outlined"
-              defaultValue="fish"
+              defaultValue="clowns"
             />
           </FormControl>
           <Button variant="contained" type="submit">
