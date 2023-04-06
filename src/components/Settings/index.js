@@ -5,7 +5,7 @@ import { useState, useId } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
-import DataConfigForm from "../DataConfigForm";
+import DataConfig from "../DataConfig";
 
 export default function Settings() {
   const [expanded, setExpanded] = useState(false);
@@ -29,7 +29,7 @@ export default function Settings() {
           Settings
         </AccordionSummary>
         <AccordionDetails>
-          <DataConfigForm />
+          <DataConfig />
         </AccordionDetails>
       </Accordion>
     </Grid>

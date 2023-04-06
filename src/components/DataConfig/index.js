@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 import useStore from "@/hooks/useStore";
 
-export default function DataConfigForm() {
+export default function DataConfig() {
   const dataTypeAdd = useStore((state) => state.dataTypeAdd);
   const amount = useStore((state) => state.amount);
   const handleAmount = useStore((state) => state.handleAmount);
