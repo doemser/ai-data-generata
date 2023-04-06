@@ -5,8 +5,9 @@ import { useState, useId } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
+import DataConfigForm from "../DataConfigForm";
 
-export default function AccordionTemplate({ summary, details }) {
+export default function Settings() {
   const [expanded, setExpanded] = useState(false);
   const id = useId();
 
@@ -25,9 +26,11 @@ export default function AccordionTemplate({ summary, details }) {
           aria-controls={`panel${id}bh-content`}
           id={`panel${id}bh-header`}
         >
-          {summary}
+          Settings
         </AccordionSummary>
-        <AccordionDetails>{details}</AccordionDetails>
+        <AccordionDetails>
+          <DataConfigForm />
+        </AccordionDetails>
       </Accordion>
     </Grid>
   );
