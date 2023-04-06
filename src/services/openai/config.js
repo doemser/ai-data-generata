@@ -7,6 +7,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export async function createAnswer(prompt) {
+  console.log("PROMPT", prompt);
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     temperature: 1,
@@ -21,8 +22,8 @@ export async function createAnswer(prompt) {
         - use this interfaces:
 
         interface Data {
-          ${prompt.dataKeys.map((key) => {
-            return `${key.value}: ${key.type}`;
+          ${prompt.dataTypes.map((type) => {
+            return `${type.value}: ${type.type}`;
           })}
         }
 

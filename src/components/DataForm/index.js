@@ -4,9 +4,13 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
-import AccordionTemplate from "@/components/Accordion";
+import Settings from "@/components/Settings";
+import InterfaceChips from "../InterfaceChips";
+import useStore from "@/hooks/useStore";
 
-export default function DataForm({ fetcher, interfaceChips, config }) {
+export default function DataForm() {
+  const fetcher = useStore((state) => state.fetcher);
+  const loading = useStore((state) => state.loading);
   return (
     <Stack sx={{ p: 2 }}>
       <Paper
@@ -23,9 +27,11 @@ export default function DataForm({ fetcher, interfaceChips, config }) {
           alignItems="center"
           onSubmit={(event) => {
             event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-            fetcher(data);
+            if (!loading) {
+              const formData = new FormData(event.target);
+              const data = Object.fromEntries(formData);
+              fetcher(data);
+            }
           }}
         >
           <FormControl sx={{ minWidth: 120 }}>
@@ -37,12 +43,13 @@ export default function DataForm({ fetcher, interfaceChips, config }) {
               defaultValue="clowns"
             />
           </FormControl>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" disabled={loading}>
             Create JSON {"{..}"}
           </Button>
         </Stack>
-        {interfaceChips}
-        <AccordionTemplate summary="Settings" details={config} />
+
+        <InterfaceChips />
+        <Settings />
       </Paper>
     </Stack>
   );

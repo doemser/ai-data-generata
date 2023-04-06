@@ -6,16 +6,16 @@ import Typography from "@mui/material/Typography";
 import Select from "@mui/material/Select";
 import Slider from "@mui/material/Slider";
 import MenuItem from "@mui/material/MenuItem";
-
 import FormControl from "@mui/material/FormControl";
 
 import { useState } from "react";
+import useStore from "@/hooks/useStore";
 
-export default function DataConfigForm({
-  onDataTypeSubmit,
-  dataAmount,
-  onDataAmount,
-}) {
+export default function DataConfigForm() {
+  const dataTypeAdd = useStore((state) => state.dataTypeAdd);
+  const amount = useStore((state) => state.amount);
+  const handleAmount = useStore((state) => state.handleAmount);
+
   const [dataType, setDataType] = useState({ value: "", type: "string" });
 
   const handleValueChange = (event) => {
@@ -29,16 +29,16 @@ export default function DataConfigForm({
   return (
     <Stack sx={{ p: 2 }}>
       <Stack spacing={2} m={2} pb={2} alignItems="center">
-        <Typography>Data Objects: {dataAmount} </Typography>
+        <Typography>Data Objects: {amount} </Typography>
         <Slider
           marks
           step={1}
           max={20}
           aria-label="amountSlider"
           valueLabelDisplay="auto"
-          value={dataAmount}
+          value={amount}
           onChange={(event) => {
-            onDataAmount(event.target.value);
+            handleAmount(event.target.value);
           }}
         />
       </Stack>
@@ -48,7 +48,7 @@ export default function DataConfigForm({
         sx={{ p: 2 }}
         onSubmit={(event) => {
           event.preventDefault();
-          onDataTypeSubmit(dataType);
+          dataTypeAdd(dataType);
         }}
       >
         <Stack direction="row" spacing={2} alignItems="center">
