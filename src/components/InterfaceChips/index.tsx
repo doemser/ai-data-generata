@@ -1,6 +1,6 @@
 import List from "@mui/material/List";
 import Chip from "@mui/material/Chip";
-import useStore from "@/hooks/useStore";
+import useStore from "../../hooks/useStore";
 
 export default function InterfaceChips() {
   const dataTypes = useStore((state) => state.dataTypes);

@@ -6,7 +6,13 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-export async function createAnswer(prompt) {
+interface Prompt {
+  dataOf: string;
+  amount: string;
+  dataTypes: { value: string; type: string }[];
+}
+
+export async function createAnswer(prompt: Prompt) {
   console.log("PROMPT", prompt);
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
@@ -15,7 +21,7 @@ export async function createAnswer(prompt) {
       {
         role: "system",
         content: `
-        Create data for ${prompt.persona}.
+        Create data for ${prompt.dataOf}.
         Desired Behaviour:
         - create ${prompt.amount} Data objects
         - exclusively answer in a valid json format

@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
-import CopyToClipboard from "@/components/CopyToClipboard";
-import DataForm from "@/components/DataForm";
-import JSONOutput from "@/components/JSONOutput";
+import CopyToClipboard from "../components/CopyToClipboard";
+import DataForm from "../components/DataForm";
+import JSONOutput from "../components/JSONOutput";
 
 const flexCenter = {
   display: "flex",

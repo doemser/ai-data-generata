@@ -4,9 +4,9 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
-import Settings from "@/components/Settings";
+import Settings from "../Settings";
 import InterfaceChips from "../InterfaceChips";
-import useStore from "@/hooks/useStore";
+import useStore from "../../hooks/useStore";
 
 export default function DataForm() {
   const fetcher = useStore((state) => state.fetcher);
@@ -28,17 +28,17 @@ export default function DataForm() {
           onSubmit={(event) => {
             event.preventDefault();
             if (!loading) {
-              const formData = new FormData(event.target);
+              const formData = new FormData(event.target as HTMLFormElement);
               const data = Object.fromEntries(formData);
-              fetcher(data);
+              fetcher(data as { dataOf: string });
             }
           }}
         >
           <FormControl sx={{ minWidth: 120 }}>
             <TextField
-              id="persona"
+              id="dataOf"
               label="Data of:"
-              name="persona"
+              name="dataOf"
               variant="outlined"
               defaultValue="clowns"
             />

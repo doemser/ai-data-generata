@@ -1,7 +1,18 @@
 import { nanoid } from "nanoid";
 import { create } from "zustand";
 
-const useStore = create((set, get) => ({
+interface StoreState {
+  amount: number | number[];
+  dataTypes: { id: string; value: string; type: string }[];
+  answer: { role: string; content: string };
+  loading: boolean;
+  fetcher: (data: { dataOf: string }) => void;
+  dataTypeAdd: (type: { value: string; type: string }) => void;
+  dataTypeDelete: (id: string) => void;
+  handleAmount: (amount: number | number[]) => void;
+}
+
+const useStore = create<StoreState>()((set, get) => ({
   amount: 3,
   dataTypes: [
     { id: "asdSa", value: "id", type: "string" },

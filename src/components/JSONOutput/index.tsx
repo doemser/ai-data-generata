@@ -2,7 +2,7 @@ import Stack from "@mui/material/Stack";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { useState, useEffect } from "react";
-import useStore from "@/hooks/useStore";
+import useStore from "../../hooks/useStore";
 
 export default function JSONOutput() {
   const answer = useStore((state) => state.answer);

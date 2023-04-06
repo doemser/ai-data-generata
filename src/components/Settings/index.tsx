@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import SVGIcon from "@/components/SVGIcon";
+import SVGIcon from "../SVGIcon";
 
 import { useState, useId } from "react";
 import Accordion from "@mui/material/Accordion";
@@ -17,7 +17,7 @@ export default function Settings() {
   return (
     <Grid container item xs={12} py={1}>
       <Accordion
-        expanded={expanded === `panel-${id}`}
+        expanded={expanded}
         onChange={handleChange(`panel-${id}`)}
         sx={{ width: "100%" }}
       >

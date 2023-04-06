@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 
 import { useState } from "react";
-import useStore from "@/hooks/useStore";
+import useStore from "../../hooks/useStore";
 
 export default function DataConfig() {
   const dataTypeAdd = useStore((state) => state.dataTypeAdd);
@@ -37,8 +37,8 @@ export default function DataConfig() {
           aria-label="amountSlider"
           valueLabelDisplay="auto"
           value={amount}
-          onChange={(event) => {
-            handleAmount(event.target.value);
+          onChange={(_, newValue) => {
+            handleAmount(newValue);
           }}
         />
       </Stack>
