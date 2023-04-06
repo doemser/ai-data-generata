@@ -10,20 +10,18 @@ const flexCenter = {
 
 export default function Home() {
   return (
-    <>
-      <Grid container spacing={1} mb={4}>
-        <Grid item xs={12} sx={flexCenter}>
-          <DataForm />
-        </Grid>
-
-        <Grid item xs={12} sx={flexCenter}>
-          <CopyToClipboard />
-        </Grid>
-
-        <Grid item xs={12} sx={flexCenter}>
-          <JSONOutput />
-        </Grid>
+    <Grid container spacing={1} mb={4}>
+      <Grid item xs={12} sx={flexCenter}>
+        <DataForm />
       </Grid>
-    </>
+
+      <Grid item xs={12} sx={flexCenter}>
+        <CopyToClipboard />
+      </Grid>
+
+      <Grid item xs={12} sx={flexCenter}>
+        <JSONOutput />
+      </Grid>
+    </Grid>
   );
 }
