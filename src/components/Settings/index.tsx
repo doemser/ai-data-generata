@@ -11,14 +11,14 @@ export default function Settings() {
   const [expanded, setExpanded] = useState(false);
   const id = useId();
 
-  const handleChange = (panel) => (_, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
+  const handleChange = () => (_, isExpanded) => {
+    setExpanded(isExpanded ? true : false);
   };
   return (
     <Grid container item xs={12} py={1}>
       <Accordion
         expanded={expanded}
-        onChange={handleChange(`panel-${id}`)}
+        onChange={handleChange()}
         sx={{ width: "100%" }}
       >
         <AccordionSummary

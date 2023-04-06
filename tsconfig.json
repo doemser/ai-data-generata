@@ -22,4 +22,3 @@
   ],
   "exclude": ["node_modules"]
 }
-, "src/components/DataConfig/index.js"
