@@ -1,7 +1,8 @@
 {
-  "name": "openai-ai-ai",
-  "version": "0.1.0",
-  "private": true,
+  "name": "ai-data-generata",
+  "description": "OpenAI-powered JSON data generator.",
+  "version": "1.0.0",
+  "author": "Dominik Hautau",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
