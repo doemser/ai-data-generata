@@ -27,6 +27,12 @@ OPENAI_API_KEY=your_api_key_here
 
 ```
 
+### Do not forget to:
+
+```bash
+npm i
+```
+
 ### Run the development server:
 
 ```bash
