@@ -1,12 +1,16 @@
 # AI Data Generata
 
+This app allows users to generate JSON data based on input prompt using OpenAI's GPT-3 language model.
+
 ![Data Generata](/public/assets/data-generata_.png)
 
-This app allows users to generate JSON data based on input prompt using OpenAI's GPT-3 language model and display the generated output in a syntax-highlighted code block, with the ability to add custom data keys.
+The app is designed to use the OpenAI API to generate answers to prompts provided by the user. It utilizes the "openai" package to interface with the API, and requires an API key to be set as an environment variable named "OPENAI_API_KEY".
+
+---
 
 ## Getting Started
 
-### Add your API key
+### Add your OpenAI API key
 
 Create an account at https://platform.openai.com/signup and obtain your API key.
 
