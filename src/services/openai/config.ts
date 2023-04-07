@@ -13,7 +13,6 @@ interface Prompt {
 }
 
 export async function createAnswer(prompt: Prompt) {
-  console.log("PROMPT", prompt);
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     temperature: 1,
